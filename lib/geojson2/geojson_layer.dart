@@ -163,7 +163,7 @@ class _GeoJsonLayerState extends State<GeoJsonLayer> {
       _clear();
       _parseGeoJson(data);
     } on Exception {
-      setState(() {});
+      if (mounted) setState(() {});
     }
   }
 
@@ -178,7 +178,7 @@ class _GeoJsonLayerState extends State<GeoJsonLayer> {
     } else if (type != null) {
       _parseFeature(data);
     }
-    setState(() {});
+    if (mounted) setState(() {});
   }
 
   LatLng? _parseCoordinate(List<dynamic> data) {

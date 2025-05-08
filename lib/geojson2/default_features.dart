@@ -100,8 +100,8 @@ Polyline defaultOnPolyline(List<LatLng> points, Map<String, dynamic> props,
 
   dynamic opacity = props['stroke-opacity'];
   if (opacity is String) opacity = double.tryParse(opacity);
-  if (opacity is double && opacity >= 0.0 && opacity <= 1.0) {
-    stroke = stroke.withValues(alpha: opacity);
+  if (opacity is num && opacity >= 0.0 && opacity <= 1.0) {
+    stroke = stroke.withValues(alpha: opacity.toDouble());
   } else if (stroke.a > 0.99) {
     stroke = stroke.withValues(alpha: defaults.strokeOpacity);
   }
@@ -134,8 +134,8 @@ Polygon defaultOnPolygon(
 
   dynamic opacity = props['fill-opacity'];
   if (opacity is String) opacity = double.tryParse(opacity);
-  if (opacity is double && opacity >= 0.0 && opacity <= 1.0) {
-    fill = fill.withValues(alpha: opacity);
+  if (opacity is num && opacity >= 0.0 && opacity <= 1.0) {
+    fill = opacity == 0.0 ? null : fill.withValues(alpha: opacity.toDouble());
   } else if (fill.a > 0.99) {
     fill = fill.withValues(alpha: defaults.fillOpacity);
   }
@@ -146,8 +146,8 @@ Polygon defaultOnPolygon(
 
   dynamic sOpacity = props['stroke-opacity'];
   if (sOpacity is String) sOpacity = double.tryParse(sOpacity);
-  if (sOpacity is double && sOpacity >= 0.0 && sOpacity <= 1.0) {
-    stroke = stroke.withValues(alpha: sOpacity);
+  if (sOpacity is num && sOpacity >= 0.0 && sOpacity <= 1.0) {
+    stroke = stroke.withValues(alpha: sOpacity.toDouble());
   } else if (stroke.a > 0.99) {
     stroke = stroke.withValues(alpha: defaults.strokeOpacity);
   }
